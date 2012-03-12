@@ -10,6 +10,7 @@ gem 'guard-haml'
 gem 'guard-sass'
 
 # gems to compile
+gem 'sprockets'
 gem 'coffee-script'
 gem 'sass'
 gem 'haml'
