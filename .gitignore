@@ -2,3 +2,4 @@ resource
 resume
 deploy
 deploy.sh
+.sass-cache
