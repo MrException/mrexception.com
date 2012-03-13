@@ -15,7 +15,7 @@ LOGGER = Logger.new(STDOUT)
 desc 'Generate stylesheets using sass'
 task :css do
   sh "mkdir -p #{DEPLOY}/css"
-  sh "sass -I#{VENDOR_CSS} #{SRC_CSS}/style.scss #{DEPLOY}/css/style.css"
+  sh "sass -I#{VENDOR_CSS} #{SRC_CSS}/style.css.scss #{DEPLOY}/css/style.css"
 end
 
 desc 'Generate the javascript file'
@@ -31,13 +31,13 @@ task :js do
 
   assets = sprockets.find_asset('script.js')
 
-  assets.write_to(DEPLOY.join('js', 'scripts.js'))
+  assets.write_to("#{DEPLOY}/js/script.js")
 end
 
 desc 'Generate html from haml'
 task :html do
   Dir.glob('**/*.haml') do |f|
-    out = DEPLOY.to_s + f.sub(/.*\//, '').sub(/.haml$/, '.html')
+    out = DEPLOY.to_s + f.sub(/.*\//, '').sub(/.haml$/, '')
     sh "haml #{f} #{out}"
   end
 end
