@@ -1,5 +1,16 @@
 resource
 resume
-deploy
 deploy.sh
+
+# from jekyll-bootstrap
 .sass-cache
+_site/*
+_theme_packages/*
+
+Thumbs.db
+.DS_Store
+
+!.gitkeep
+
+.rbenv-version
+.rvmrc
