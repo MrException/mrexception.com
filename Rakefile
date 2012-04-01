@@ -15,7 +15,7 @@ LOGGER = Logger.new(STDOUT)
 desc 'Generate stylesheets using sass'
 task :css do
   sh "mkdir -p #{DEPLOY}/css"
-  sh "sass -I#{VENDOR_CSS} #{SRC_CSS}/style.css.scss #{DEPLOY}/css/style.css"
+  sh "sass -I#{VENDOR_CSS} #{SRC_CSS}/style.scss #{DEPLOY}/css/style.css"
 end
 
 desc 'Generate the javascript file'
@@ -37,7 +37,7 @@ end
 desc 'Generate html from haml'
 task :html do
   Dir.glob('**/*.haml') do |f|
-    out = DEPLOY.to_s + f.sub(/.*\//, '').sub(/.haml$/, '')
+    out = DEPLOY.to_s + '/' + f.sub(/.*\//, '').sub(/.haml$/, '')
     sh "haml #{f} #{out}"
   end
 end
@@ -45,7 +45,8 @@ end
 desc "Move static files into site dir."
 task :static do
   sh "cp -r #{ROOT}/static/* #{DEPLOY}"
-  sh "cp -r #{ROOT}/vendor/images #{DEPLOY}/img"
+  sh "mkdir -p #{DEPLOY}/img"
+  sh "cp -r #{ROOT}/vendor/images/* #{DEPLOY}/img/"
 end
 
 desc 'Compile everything'
